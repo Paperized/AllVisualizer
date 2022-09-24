@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { KonvaEventObject } from 'konva/lib/Node';
 import { Stage, Layer, Circle, Text, Group, Rect, Line } from 'react-konva';
 import { clamp, KeyState, useKeys, useResizerObserver } from '../../utils/utils';
@@ -30,7 +30,7 @@ function TreeCanvas() {
   const exampleTree = getExampleTree();
   const elaboratedTree = elaborateTree(exampleTree, nodeSize, nodeSpace);
 
-  const dimensions = useResizerObserver("tree-stage");
+  const dimensions = useResizerObserver("main-content");
   const [tree, setTree] = React.useState(exampleTree);
   const [zoom, setZoom] = React.useState(1);
 
@@ -107,7 +107,7 @@ function TreeCanvas() {
   }
 
   return (
-    <div id="tree-stage" className='flex-grow-1'>
+    <React.Fragment>
       <OptionModal isOpen={modalType === "confirmation" && isModalOpen} onOptionClick={onOptionClick} position={modalPosition} options={exampleOption}></OptionModal>
       <Stage height={dimensions.height} width={dimensions.width}>
         <Layer>
@@ -130,7 +130,7 @@ function TreeCanvas() {
           </Group>
         </Layer>
       </Stage>
-    </div>
+    </React.Fragment>
   );
 }
 
