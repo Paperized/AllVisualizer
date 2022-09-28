@@ -2,10 +2,12 @@ import { Vector2d } from "konva/lib/types";
 import React from "react";
 import './Modals.scss';
 
+export type ModalOpt = {id: number, value: string};
+
 export interface OptionModalProps {
   isOpen: boolean;
   position: Vector2d;
-  options: {id: number, value: string}[]
+  options: ModalOpt[]
   onOptionClick: (id: any) => void;
 }
 

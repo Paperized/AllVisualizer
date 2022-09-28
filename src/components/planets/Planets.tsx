@@ -45,7 +45,7 @@ function Planets() {
         ps.forEach(value => {
           if(value.radius === undefined)
             value.radius = 0;
-          value.radius = (maxRadius == 0 ? 0 : value.radius / maxRadius) * 100;
+          value.radius = (maxRadius === 0 ? 0 : value.radius / maxRadius) * 100;
           value.position = {x: Math.random() * 200, y: Math.random() * 200};
         });
 

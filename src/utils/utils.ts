@@ -6,33 +6,9 @@ function useResizerObserver(elementId: string) {
       width: 0
   });
 
-  /*
-  useEffect(() => {
-    const resizer = new ResizeObserver(entries => {
-      const entry = entries.at(0);
-      if(entry === undefined) return;
-
-      const stageSize = entry.contentRect;
-      if(stageSize.width === dimensions.width && stageSize.height === dimensions.height)
-        return;
-
-      setDimensions({
-        width: stageSize.width,
-        height: stageSize.height
-      });
-      console.log('dimension changed');
-    });
-    
-    const stage = document.getElementById(elementId);
-    if(stage === null) return;
-
-    resizer.observe(stage);
-    return (() => resizer.unobserve(stage));
-  });*/
-
   useEffect(() => {
     function onLoaded() {
-      if(document.readyState != "complete") return;
+      if(document.readyState !== "complete") return;
       const stage = document.getElementById(elementId);
       if(stage === null) return;
       setDimensions({width: stage.clientWidth, height: stage.clientHeight});
@@ -57,7 +33,7 @@ interface Keys {
 // TODO: use setKeys when the time arise
 function useKeys() {
   const initialKeys: Keys = {};
-  const [keys, setKeys] = useState(initialKeys);
+  const [keys] = useState(initialKeys);
 
   function onKeyDown(e: KeyboardEvent) {
     keys[e.key] = KeyState.DOWN;
